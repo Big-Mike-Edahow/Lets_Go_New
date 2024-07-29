@@ -1,0 +1,46 @@
+<!-- view.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/images/favicon.ico" type="image/png" rel="shortcut icon">
+    <link href="../static/css/style.css" type="text/css" rel="stylesheet">
+    <title>View</title>
+</head>
+
+<body>
+    <header>
+    </header>
+    <nav>
+        <h1><a href='/'>Snippetbox ✂️</a></h1>
+        <a href="/">Home 🎲</a>
+        <a href="/create">Create 🖊️</a>
+        <a href="/about">About 🛈</a>
+    </nav>
+    <main>
+        <section class="center">
+            <h1 class="headline-h1"><i><b>{{.Title}}...💬</b></i></h1>
+            <br><br>
+            <div class='snippet'>
+                <div class='metadata'>
+                    <strong>{{.Title}}</strong>
+                    <span>#{{.Id}}</span>
+                </div>
+                <pre><code>{{.Content}}</code></pre>
+                <div class='metadata'>
+                    <time>Created: {{.Created}}</time>
+                    <time><a class="button" href="/">⬅️ Back</a></time>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Powered by <a href='https://golang.org/'>Go 🚲</a></p>
+    </footer>
+</body>
+
+</html>
+

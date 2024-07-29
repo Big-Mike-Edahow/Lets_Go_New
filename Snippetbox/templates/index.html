@@ -1,0 +1,58 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/images/favicon.ico" type="image/png" rel="shortcut icon">
+    <link href="../static/css/style.css" type="text/css" rel="stylesheet">
+    <title>Home</title>
+</head>
+
+<body>
+    <header>
+    </header>
+    <nav>
+        <h1><a href='/'>Snippetbox ✂️</a></h1>
+        <a href="/">Home 🎲</a>
+        <a href="/create">Create 🖊️</a>
+        <a href="/about">About 🛈</a>
+    </nav>
+    <main>
+        <section class="center">
+            <h1 class="center headline-h1">Latest Snippets ✍️</h1>
+            <br>
+            <hr><br><br>
+            <table class="center">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Created</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                {{range .}}
+                <tbody class="metadata">
+                    <tr>
+                        <td>#{{.Id}}</td>
+                        <td><a href='/view?id={{ .Id }}'>{{.Title}}</a></td>
+                        <td><time>{{.Created}}</time></td>
+                        <td><a class="button" href="/edit?id={{ .Id }}">Edit</a></td>
+                        <td><a class="button" href="/delete?id={{ .Id }}">Delete</a></td>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>Powered by <a href='https://golang.org/'>Go 🚲</a></p>
+    </footer>
+</body>
+
+</html>
+
