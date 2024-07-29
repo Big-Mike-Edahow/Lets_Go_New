@@ -33,10 +33,7 @@ func (app *application) viewHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	viewTemplate := template.Must(template.ParseFiles("./templates/view.html"))
-	err = viewTemplate.Execute(w, snippet)
-	if err != nil {
-		log.Println(err)
-	}
+	viewTemplate.Execute(w, snippet)
 }
 
 func (app *application) createHandler(w http.ResponseWriter, r *http.Request) {
