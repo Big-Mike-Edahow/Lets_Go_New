@@ -30,7 +30,6 @@ func main() {
 	}
 	defer db.Close()
 
-	
 	app := &application{
         snippets: &models.SnippetModel{DB: db},
     }
