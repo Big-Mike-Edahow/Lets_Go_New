@@ -18,15 +18,6 @@ type SnippetModel struct {
 	DB *sql.DB
 }
 
-func (m *SnippetModel) Insert(title string, content string) (error) {
-	stmt := "INSERT INTO snippets (title, content) VALUES(?, ?)"
-	_, err := m.DB.Exec(stmt, title, content)
-	if err != nil {
-		log.Println(err)
-	}
-	return err
-}
-
 func (m *SnippetModel) Get(id int) (Snippet, error) {
 	stmt := "SELECT id, title, content, created  FROM snippets WHERE id = ?"
 	row := m.DB.QueryRow(stmt, id)
@@ -70,6 +61,15 @@ func (m *SnippetModel) Latest() ([]Snippet, error) {
 	}
 
 	return snippets, nil
+}
+
+func (m *SnippetModel) Insert(title string, content string) (error) {
+	stmt := "INSERT INTO snippets (title, content) VALUES(?, ?)"
+	_, err := m.DB.Exec(stmt, title, content)
+	if err != nil {
+		log.Println(err)
+	}
+	return err
 }
 
 func (m *SnippetModel) Update(id int, title string, content string) error {
