@@ -18,21 +18,13 @@ type SnippetModel struct {
 	DB *sql.DB
 }
 
-func (m *SnippetModel) Insert(title string, content string) (int, error) {
+func (m *SnippetModel) Insert(title string, content string) (error) {
 	stmt := "INSERT INTO snippets (title, content) VALUES(?, ?)"
-
-	result, err := m.DB.Exec(stmt, title, content)
+	_, err := m.DB.Exec(stmt, title, content)
 	if err != nil {
-		return 0, err
+		log.Println(err)
 	}
-
-	// Use the LastInsertId() method to get the ID of our newly inserted record.
-	id, err := result.LastInsertId()
-	if err != nil {
-		return 0, err
-	}
-
-	return int(id), nil
+	return err
 }
 
 func (m *SnippetModel) Get(id int) (Snippet, error) {
@@ -77,17 +69,11 @@ func (m *SnippetModel) Latest() ([]Snippet, error) {
 		return nil, err
 	}
 
-	// If everything went OK then return the Snippets slice.
 	return snippets, nil
 }
 
 func (m *SnippetModel) Update(id int, title string, content string) error {
-	stmt := "UPDATE snippets set title=?, content=? where id=?"
-
-	log.Println(id)
-	log.Println(title)
-	log.Println(content)
-	
+	stmt := "UPDATE snippets SET title=?, content=? WHERE id=?"
 	_, err := m.DB.Exec(stmt, title, content, id)
 	if err != nil {
 		log.Println(err)

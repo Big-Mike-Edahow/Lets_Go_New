@@ -70,14 +70,13 @@ func (app *application) saveHandler(w http.ResponseWriter, r *http.Request) {
 			createTemplate, _ := template.ParseFiles("./templates/create.html")
 			createTemplate.Execute(w, msg)
 		} else {
-			_, err := app.snippets.Insert(title, content)
+			err := app.snippets.Insert(title, content)
 			if err != nil {
 				log.Println(err)
-
 			}
 		}
 	}
-	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func (app *application) editHandler(w http.ResponseWriter, r *http.Request) {
