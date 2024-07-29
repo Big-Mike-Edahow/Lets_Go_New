@@ -71,7 +71,6 @@ func (m *SnippetModel) Insert(title string, content string) (error) {
 	}
 	return err
 }
-
 func (m *SnippetModel) Update(id int, title string, content string) error {
 	stmt := "UPDATE snippets SET title=?, content=? WHERE id=?"
 	_, err := m.DB.Exec(stmt, title, content, id)
@@ -80,7 +79,6 @@ func (m *SnippetModel) Update(id int, title string, content string) error {
 	}
 	return err
 }
-
 func (m *SnippetModel) Delete(id int) error {
 	stmt := "DELETE FROM snippets WHERE id = ?"
 	_, err := m.DB.Exec(stmt, id)
