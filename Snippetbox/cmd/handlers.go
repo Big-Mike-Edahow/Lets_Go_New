@@ -54,9 +54,9 @@ func (app *application) saveHandler(w http.ResponseWriter, r *http.Request) {
 		msg := &Message{
 			Title:   r.PostFormValue("title"),
 			Content: r.PostFormValue("content"),
+			Errors: make(map[string]string),
 		}
-		msg.Errors = make(map[string]string)
-
+		
 		if strings.TrimSpace(title) == "" {
 			msg.Errors["Title"] = "Title required"
 		}
@@ -118,11 +118,11 @@ func (app *application) updateHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		msg := &Message{
 			Id:      id,
-			Title:   r.PostFormValue("title"),
-			Content: r.PostFormValue("content"),
+			Title:   title,
+			Content: content,
+			Errors: make(map[string]string),
 		}
-		msg.Errors = make(map[string]string)
-
+		
 		if strings.TrimSpace(title) == "" {
 			msg.Errors["Title"] = "Title required"
 		}

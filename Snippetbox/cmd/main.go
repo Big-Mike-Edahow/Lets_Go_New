@@ -31,8 +31,8 @@ func main() {
 	defer db.Close()
 
 	app := &application{
-        snippets: &models.SnippetModel{DB: db},
-    }
+		snippets: &models.SnippetModel{DB: db},
+	}
 
 	http.HandleFunc("/", app.indexHandler)
 	http.HandleFunc("/view", app.viewHandler)
